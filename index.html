@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>版本公布后的五天 · DFO 110 运营简报（公开版）</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11, 11, 11, 0.10);
+  --series-1: #2a78d6; --series-2: #eb6834; --context: #c3c2b7; --good-text: #006300; --critical: #d03b3b;
+  --seq-0: #e1e0d9; --seq-1: #cde2fb; --seq-2: #9ec5f4; --seq-3: #6da7ec; --seq-4: #3987e5;
+  --seq-5: #256abf; --seq-6: #184f95; --seq-7: #0d366b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255, 255, 255, 0.10);
+    --series-1: #3987e5; --series-2: #d95926; --context: #52514e; --good-text: #0ca30c;
+    --seq-0: #2c2c2a; --seq-1: #0d366b; --seq-2: #184f95; --seq-3: #256abf; --seq-4: #3987e5;
+    --seq-5: #6da7ec; --seq-6: #9ec5f4; --seq-7: #cde2fb;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --border: rgba(255, 255, 255, 0.10);
+  --series-1: #3987e5; --series-2: #d95926; --context: #52514e; --good-text: #0ca30c;
+  --seq-0: #2c2c2a; --seq-1: #0d366b; --seq-2: #184f95; --seq-3: #256abf; --seq-4: #3987e5;
+  --seq-5: #6da7ec; --seq-6: #9ec5f4; --seq-7: #cde2fb;
+}
+* { box-sizing: border-box; }
+html { background: var(--page); }
+body { margin: 0; color: var(--ink); background: var(--page); font: 15px/1.75 system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.brand { font-weight: 700; letter-spacing: .02em; }
+.brand span { color: var(--ink-2); font-weight: 500; margin-left: 10px; }
+.theme-toggle { font: inherit; font-size: 13px; color: var(--ink-2); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.theme-toggle:focus-visible, .hit:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+header.hero { padding: 56px 0 28px; }
+.kicker { font-size: 13px; color: var(--ink-2); letter-spacing: .04em; margin: 0 0 14px; }
+h1 { font-size: 38px; line-height: 1.28; margin: 0 0 18px; letter-spacing: -.01em; max-width: 900px; }
+.lede { font-size: 17px; color: var(--ink-2); max-width: 780px; margin: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 30px 0 8px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 16px; }
+.kpi .label { font-size: 13px; color: var(--ink-2); }
+.kpi .value { font-size: 32px; font-weight: 650; line-height: 1.2; margin: 6px 0 4px; }
+.kpi .note { font-size: 13px; color: var(--ink-2); }
+.kpi .note strong { color: var(--good-text); font-weight: 600; }
+section.chapter { padding: 44px 0 8px; border-top: 1px solid var(--border); margin-top: 40px; }
+.chapter-no { font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+h2 { font-size: 26px; line-height: 1.35; margin: 6px 0 14px; }
+h3 { font-size: 17px; margin: 30px 0 8px; }
+p { margin: 0 0 14px; max-width: 780px; }
+.muted { color: var(--ink-2); }
+figure { margin: 26px 0 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 20px 14px; }
+figcaption .title { font-weight: 650; font-size: 16px; }
+figcaption .sub { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
+.chart { position: relative; margin-top: 12px; }
+.chart svg { display: block; overflow: visible; }
+.notes { list-style: none; padding: 0; margin: 12px 0 0; font-size: 13px; color: var(--ink-2); display: grid; gap: 4px; }
+.notes li { display: flex; gap: 8px; align-items: baseline; }
+.badge-no { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--ink-2); font-size: 11px; color: var(--ink); flex: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--ink-2); margin-top: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.key-rect { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.multiples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.multiples figure { margin: 0; }
+details { margin-top: 12px; font-size: 13px; }
+summary { cursor: pointer; color: var(--ink-2); width: fit-content; }
+.table-scroll { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--grid); white-space: nowrap; font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-2); font-weight: 600; }
+table.plain th, table.plain td { text-align: left; }
+.callout { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--critical); border-radius: 12px; padding: 16px 18px; margin: 18px 0 8px; max-width: 860px; }
+.callout svg { flex: none; margin-top: 3px; }
+.callout strong { display: block; font-size: 16px; }
+.timeline { list-style: none; margin: 16px 0 0 6px; padding: 0; border-left: 1px solid var(--axis); max-width: 820px; }
+.timeline li { position: relative; padding: 0 0 14px 22px; }
+.timeline li::before { content: ""; position: absolute; left: -6px; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--surface); border: 2px solid var(--ink-2); }
+.timeline li.key::before { border-color: var(--series-2); background: var(--series-2); }
+.timeline time { font-weight: 650; margin-right: 8px; font-variant-numeric: tabular-nums; }
+.evidence { counter-reset: ev; list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; max-width: 840px; }
+.evidence li { counter-increment: ev; position: relative; padding-left: 34px; }
+.evidence li::before { content: counter(ev); position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); font-size: 12px; font-weight: 650; display: grid; place-items: center; }
+.actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.action { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 14px; }
+.nw { white-space: nowrap; }
+.action .state { font-size: 12px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.action .state i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; border: 1.5px solid var(--muted); }
+.action.done .state i { background: var(--good-text); border-color: var(--good-text); }
+.method { font-size: 13px; color: var(--ink-2); margin: 0; }
+.method dt { font-weight: 650; color: var(--ink); margin-top: 12px; }
+.method dd { margin: 2px 0 0; max-width: 840px; }
+footer { padding: 30px 0 60px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 48px; }
+#tip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 13px; line-height: 1.5; box-shadow: 0 6px 24px rgba(0, 0, 0, .18); min-width: 140px; max-width: 280px; opacity: 0; transition: opacity .08s; left: 0; top: 0; }
+#tip.on { opacity: 1; }
+#tip .t { color: var(--ink-2); font-size: 12px; margin-bottom: 4px; }
+#tip .row { display: flex; align-items: center; gap: 8px; }
+#tip .row b { font-size: 15px; font-weight: 650; }
+#tip .row span { color: var(--ink-2); }
+#tip .key { width: 14px; height: 2px; border-radius: 1px; flex: none; display: inline-block; }
+svg text { font-family: inherit; }
+.axis-text { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.label-text { fill: var(--ink-2); font-size: 12px; }
+.value-text { fill: var(--ink); font-size: 12px; font-weight: 650; }
+.badge-text { fill: var(--ink); font-size: 11px; font-weight: 650; }
+.halo { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.gridline { stroke: var(--grid); stroke-width: 1; shape-rendering: crispEdges; }
+.baseline { stroke: var(--axis); stroke-width: 1; shape-rendering: crispEdges; }
+.mark { transition: opacity .1s; }
+svg.dim .mark:not(.hover) { opacity: .4; }
+.hit { fill: transparent; cursor: default; }
+@media (max-width: 820px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .multiples, .actions { grid-template-columns: 1fr; }
+  h1 { font-size: 29px; }
+}
+@media (max-width: 480px) {
+  .wrap { padding: 0 16px; }
+  figure { padding: 16px 12px 12px; }
+  .kpi .value { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">DFO 110<span>运营简报</span></div>
+    <button class="theme-toggle" type="button" id="theme-toggle">切换深色</button>
+  </div>
+
+  <header class="hero">
+    <p class="kicker">2026 年 9 月 19–23 日 · 访问日志与数据库只读统计</p>
+    <h1><span class="nw">版本公布后的五天：</span><span class="nw">访问量涨了七倍，</span><span class="nw">还来了一位</span><span class="nw">毅力惊人的</span><span class="nw">猜密码兄弟</span></h1>
+    <p class="lede">9 月 19 日版本消息公布后，论坛访问量当天翻了约四倍，并在 9 月 20 日更新公告发出的那个晚上达到峰值。热度回落后，每天的访客仍是公布前平均水平的约七倍。同一时期，一位没有账号的访客专挑赞助玩家下手，9 月 23 日凌晨集中尝试登录，全部失败。这份简报用访问日志和数据库记录还原这两件事——数据都是真的，结论也先剧透：他一无所获。顺便说一句，他想进来的这个站，本身就跑在阿里云免费试用一年的账号上；想知道里面长什么样，私聊管理员要个邀请码就行，真不用翻墙。</p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <section class="chapter" id="growth">
+    <div class="chapter-no">01 · 访问量</div>
+    <h2>公布当天翻四倍，更新公告当晚到顶</h2>
+    <p>公布前，论坛每天被打开两百到六百多次，来自一两百个 IP。9 月 19 日这个数字跳到 1,869 次、574 个 IP。9 月 20 日论坛连发 0.3.6–0.3.9 四篇更新公告，游戏启动量同日从个位数跳到 544 次，论坛当天被打开 4,130 次、来自 1,059 个 IP，是五天里的最高点。之后三天有所回落，但仍稳定在每天约 2,800 次、900 多个 IP，大约是公布前平均水平的九倍和七倍。</p>
+    <figure>
+      <figcaption><div class="title">每天论坛整页打开次数</div><div class="sub">9 月 9–23 日；蓝色是版本公布后的五天，灰色是此前</div></figcaption>
+      <div class="chart" id="chart-daily"></div>
+      <ul class="notes" id="notes-daily"></ul>
+      <details><summary>查看数据表</summary><div class="table-scroll"><table><thead><tr><th>日期</th><th>整页打开</th><th>独立 IP</th><th>新面孔</th><th>启动游戏次数</th><th>启动游戏的玩家</th><th>新注册</th><th>新反馈</th><th>登录人数</th></tr></thead><tbody><tr><td>9/9</td><td>230</td><td>118</td><td>—</td><td>0</td><td>0</td><td>1</td><td>34</td><td>—</td></tr><tr><td>9/10</td><td>213</td><td>99</td><td>67</td><td>0</td><td>0</td><td>0</td><td>29</td><td>—</td></tr><tr><td>9/11</td><td>187</td><td>104</td><td>69</td><td>0</td><td>0</td><td>1</td><td>24</td><td>—</td></tr><tr><td>9/12</td><td>205</td><td>104</td><td>67</td><td>0</td><td>0</td><td>0</td><td>21</td><td>—</td></tr><tr><td>9/13</td><td>177</td><td>100</td><td>60</td><td>2</td><td>1</td><td>0</td><td>16</td><td>—</td></tr><tr><td>9/14</td><td>248</td><td>119</td><td>81</td><td>1</td><td>1</td><td>0</td><td>10</td><td>—</td></tr><tr><td>9/15</td><td>190</td><td>91</td><td>62</td><td>0</td><td>0</td><td>1</td><td>6</td><td>—</td></tr><tr><td>9/16</td><td>653</td><td>207</td><td>155</td><td>20</td><td>20</td><td>50</td><td>2</td><td>10</td></tr><tr><td>9/17</td><td>447</td><td>192</td><td>100</td><td>197</td><td>45</td><td>4</td><td>63</td><td>24</td></tr><tr><td>9/18</td><td>471</td><td>225</td><td>142</td><td>62</td><td>28</td><td>2</td><td>22</td><td>6</td></tr><tr><td>9/19</td><td>1,869</td><td>574</td><td>466</td><td>3</td><td>3</td><td>0</td><td>27</td><td>10</td></tr><tr><td>9/20</td><td>4,130</td><td>1,059</td><td>776</td><td>544</td><td>70</td><td>20</td><td>43</td><td>44</td></tr><tr><td>9/21</td><td>3,027</td><td>920</td><td>458</td><td>350</td><td>55</td><td>1</td><td>40</td><td>14</td></tr><tr><td>9/22</td><td>2,875</td><td>986</td><td>530</td><td>395</td><td>52</td><td>0</td><td>13</td><td>8</td></tr><tr><td>9/23</td><td>2,621</td><td>894</td><td>405</td><td>322</td><td>53</td><td>0</td><td>25</td><td>14</td></tr></tbody></table></div></details>
+    </figure>
+
+    <h3>新面孔和真正进游戏的人</h3>
+    <p>这五天出现了 2,635 个此前没来过的 IP，占这期间全部访客的九成以上；启动过游戏的玩家从前五天的 49 人增加到 76 人，游戏启动次数从 280 次增加到 1,614 次。注册需要邀请码，所以新注册（21 人）反而少于 9 月 16 日那一批，大部分新访客只能围观——这一点也和后面的安全事件有关。</p>
+    <div class="multiples">
+      <figure><figcaption><div class="title">独立 IP</div><div class="sub">每天访问论坛的不同 IP 数</div></figcaption><div class="chart" id="chart-ips"></div></figure>
+      <figure><figcaption><div class="title">新面孔</div><div class="sub">当天第一次出现的 IP 数</div></figcaption><div class="chart" id="chart-new"></div></figure>
+      <figure><figcaption><div class="title">启动游戏的玩家</div><div class="sub">当天通过启动器进入游戏的人数</div></figcaption><div class="chart" id="chart-players"></div></figure>
+    </div>
+    <details><summary>查看三张小图的数据表</summary><div class="table-scroll"><table><thead><tr><th>日期</th><th>独立 IP</th><th>新面孔</th><th>启动游戏的玩家</th></tr></thead><tbody><tr><td>9/10</td><td>99</td><td>67</td><td>0</td></tr><tr><td>9/11</td><td>104</td><td>69</td><td>0</td></tr><tr><td>9/12</td><td>104</td><td>67</td><td>0</td></tr><tr><td>9/13</td><td>100</td><td>60</td><td>1</td></tr><tr><td>9/14</td><td>119</td><td>81</td><td>1</td></tr><tr><td>9/15</td><td>91</td><td>62</td><td>0</td></tr><tr><td>9/16</td><td>207</td><td>155</td><td>20</td></tr><tr><td>9/17</td><td>192</td><td>100</td><td>45</td></tr><tr><td>9/18</td><td>225</td><td>142</td><td>28</td></tr><tr><td>9/19</td><td>574</td><td>466</td><td>3</td></tr><tr><td>9/20</td><td>1,059</td><td>776</td><td>70</td></tr><tr><td>9/21</td><td>920</td><td>458</td><td>55</td></tr><tr><td>9/22</td><td>986</td><td>530</td><td>52</td></tr><tr><td>9/23</td><td>894</td><td>405</td><td>53</td></tr></tbody></table></div></details>
+  </section>
+
+  <section class="chapter" id="rhythm">
+    <div class="chapter-no">02 · 时间分布</div>
+    <h2>晚上最热闹，公告发出后那一小时最忙</h2>
+    <p>把五天拆成每一小时来看：最忙的是 9 月 20 日 18 点，一小时内论坛被打开 459 次，就在更新公告发出之后。平时的高峰在晚上 19 点到午夜，凌晨 2 点到 6 点最安静——9 月 23 日凌晨 5 点那格的猜密码尝试，正是趁着这个时段。</p>
+    <figure>
+      <figcaption><div class="title">每小时论坛整页打开次数</div><div class="sub">9 月 19–23 日 × 0–23 点（北京时间），颜色对应下方的次数分档</div></figcaption>
+      <div class="chart" id="chart-heat"></div>
+      <div class="legend" id="legend-heat"></div>
+      <ul class="notes"><li><span class="badge-no">1</span>9 月 20 日 17:32–17:37 论坛发布 0.3.6–0.3.9 更新公告，18 点出现五天里最忙的一小时</li><li><span class="badge-no">2</span>9 月 23 日 05:25–05:37 集中猜密码</li></ul>
+      <details><summary>查看数据表</summary><div class="table-scroll"><table><thead><tr><th>小时</th><th>9/19</th><th>9/20</th><th>9/21</th><th>9/22</th><th>9/23</th></tr></thead><tbody><tr><td>00:00</td><td>86</td><td>90</td><td>153</td><td>112</td><td>142</td></tr><tr><td>01:00</td><td>24</td><td>154</td><td>105</td><td>70</td><td>85</td></tr><tr><td>02:00</td><td>34</td><td>32</td><td>56</td><td>49</td><td>52</td></tr><tr><td>03:00</td><td>21</td><td>20</td><td>67</td><td>33</td><td>35</td></tr><tr><td>04:00</td><td>72</td><td>53</td><td>25</td><td>41</td><td>18</td></tr><tr><td>05:00</td><td>29</td><td>35</td><td>28</td><td>56</td><td>49</td></tr><tr><td>06:00</td><td>35</td><td>29</td><td>19</td><td>42</td><td>30</td></tr><tr><td>07:00</td><td>54</td><td>45</td><td>61</td><td>42</td><td>53</td></tr><tr><td>08:00</td><td>49</td><td>54</td><td>104</td><td>115</td><td>80</td></tr><tr><td>09:00</td><td>70</td><td>151</td><td>113</td><td>91</td><td>122</td></tr><tr><td>10:00</td><td>89</td><td>83</td><td>131</td><td>118</td><td>168</td></tr><tr><td>11:00</td><td>88</td><td>133</td><td>200</td><td>171</td><td>113</td></tr><tr><td>12:00</td><td>91</td><td>142</td><td>178</td><td>132</td><td>74</td></tr><tr><td>13:00</td><td>115</td><td>115</td><td>103</td><td>78</td><td>129</td></tr><tr><td>14:00</td><td>52</td><td>103</td><td>190</td><td>111</td><td>159</td></tr><tr><td>15:00</td><td>45</td><td>184</td><td>156</td><td>200</td><td>240</td></tr><tr><td>16:00</td><td>109</td><td>231</td><td>125</td><td>195</td><td>115</td></tr><tr><td>17:00</td><td>141</td><td>361</td><td>122</td><td>115</td><td>119</td></tr><tr><td>18:00</td><td>62</td><td>459</td><td>182</td><td>137</td><td>125</td></tr><tr><td>19:00</td><td>112</td><td>446</td><td>168</td><td>207</td><td>117</td></tr><tr><td>20:00</td><td>96</td><td>432</td><td>175</td><td>160</td><td>189</td></tr><tr><td>21:00</td><td>142</td><td>306</td><td>249</td><td>212</td><td>129</td></tr><tr><td>22:00</td><td>106</td><td>259</td><td>181</td><td>202</td><td>146</td></tr><tr><td>23:00</td><td>147</td><td>213</td><td>136</td><td>186</td><td>132</td></tr></tbody></table></div></details>
+    </figure>
+  </section>
+
+  <section class="chapter" id="pages">
+    <div class="chapter-no">03 · 看了什么</div>
+    <h2>先看反馈看板，再去阿拉德社区</h2>
+    <p>被直接打开最多的是反馈看板（首页），其次是阿拉德社区、反馈详情和论坛主题。登录页和注册页也进了前十：不少人是拿着邀请码来的，也有人只是想进来看看。</p>
+    <figure>
+      <figcaption><div class="title">被直接打开最多的页面</div><div class="sub">9 月 19–23 日合计；不含站内点击跳转</div></figcaption>
+      <div class="chart" id="chart-pages"></div>
+      <details><summary>查看数据表</summary><div class="table-scroll"><table><thead><tr><th>页面</th><th>地址</th><th>整页打开</th><th>占比</th></tr></thead><tbody><tr><td>反馈看板（首页）</td><td>/</td><td>7,929</td><td>54.6%</td></tr><tr><td>阿拉德社区</td><td>/forum</td><td>1,807</td><td>12.4%</td></tr><tr><td>反馈详情</td><td>/issues/:id</td><td>1,530</td><td>10.5%</td></tr><tr><td>论坛主题</td><td>/forum/topics/:id</td><td>1,453</td><td>10.0%</td></tr><tr><td>登录</td><td>/login</td><td>316</td><td>2.2%</td></tr><tr><td>成员主页</td><td>/members/:id</td><td>247</td><td>1.7%</td></tr><tr><td>注册</td><td>/register</td><td>194</td><td>1.3%</td></tr><tr><td>社区通知</td><td>/community-notices</td><td>159</td><td>1.1%</td></tr><tr><td>贡献榜</td><td>/leaderboard</td><td>158</td><td>1.1%</td></tr><tr><td>私信</td><td>/messages</td><td>151</td><td>1.0%</td></tr></tbody></table></div></details>
+    </figure>
+  </section>
+
+  <section class="chapter" id="incident">
+    <div class="chapter-no">04 · 安全事件</div>
+    <h2>一位没有账号的兄弟，专挑赞助玩家猜密码</h2>
+    <div class="callout" role="note">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8 18.8 17.6H1.2z" fill="none" stroke="var(--critical)" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 7.3v4.9" stroke="var(--critical)" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="14.8" r="1.1" fill="var(--critical)"/></svg>
+      <div><strong>结论：兄弟很努力，但一无所获</strong><span class="muted">28 次尝试全部失败，没有任何账号被登录，也没有人申请重置密码；被尝试的账号此后没有异常登录。五天里他试遍了各种姿势，唯独没试过直接开口要邀请码。</span></div>
+    </div>
+    <div class="kpis" id="kpis-incident"></div>
+
+    <h3>经过</h3>
+    <ol class="timeline">
+      <li><time>9 月 19 日 13:49</time>这个 IP 第一次出现——正是访问量暴涨的那天。此后五天，它每天都以游客身份浏览论坛，从没登录过。</li>
+      <li class="key"><time>9 月 20 日 19:10</time>看了几位玩家的主页后，第一次用别人的用户名尝试登录，失败。</li>
+      <li><time>9 月 23 日 05:19</time>凌晨开始浏览反馈列表、论坛和贡献榜。</li>
+      <li class="key"><time>05:25–05:37</time>逐个点开赞助玩家的主页（主页上显示登录用户名），共看了 26 位；对其中 11 位，看完几秒后就用对方的用户名试 1–4 次密码，共 27 次。</li>
+      <li><time>05:30:57</time>一次过快的尝试被系统限流拒绝。</li>
+      <li><time>05:37</time>停止尝试，之后继续以游客身份浏览；9 月 24 日 0:06 还在访问。兄弟，你现在看到的这一页，就是写给你的。</li>
+    </ol>
+
+    <figure>
+      <figcaption><div class="title">9 月 23 日凌晨：先看主页，几秒后就试这个人的账号</div><div class="sub">05:19–05:38；每一行是一位被尝试的赞助玩家（已打码），最上方是这个 IP 每分钟的请求数</div></figcaption>
+      <div class="chart" id="chart-incident"></div>
+      <div class="legend">
+        <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="var(--series-1)" stroke-width="2"/></svg>查看该玩家主页</span>
+        <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="var(--series-2)"/></svg>用该玩家的用户名尝试登录（数字为次数，全部失败）</span>
+        <span><span class="key-rect" style="background: var(--context)"></span>该 IP 每分钟请求数</span>
+      </div>
+      <details><summary>查看数据表</summary><div class="table-scroll"><table class="plain"><thead><tr><th>时间</th><th>动作</th><th>账号（打码）</th><th>结果</th></tr></thead><tbody><tr><td>05:25:27</td><td>查看主页</td><td>A**n</td><td>—</td></tr><tr><td>05:25:45</td><td>查看主页</td><td>A**n</td><td>—</td></tr><tr><td>05:25:54</td><td>尝试登录</td><td>A**n（aa**86）</td><td>失败</td></tr><tr><td>05:26:09</td><td>尝试登录</td><td>A**n（aa**86）</td><td>失败</td></tr><tr><td>05:26:11</td><td>查看主页</td><td>A**n</td><td>—</td></tr><tr><td>05:26:19</td><td>查看主页</td><td>哈**瓜</td><td>—</td></tr><tr><td>05:27:31</td><td>尝试登录</td><td>哈**瓜（a1**5a）</td><td>失败</td></tr><tr><td>05:27:34</td><td>尝试登录</td><td>哈**瓜（a1**5a）</td><td>失败</td></tr><tr><td>05:27:36</td><td>尝试登录</td><td>哈**瓜（a1**5a）</td><td>失败</td></tr><tr><td>05:27:49</td><td>尝试登录</td><td>哈**瓜（a1**5a）</td><td>失败</td></tr><tr><td>05:28:14</td><td>查看主页</td><td>我**了</td><td>—</td></tr><tr><td>05:28:32</td><td>尝试登录</td><td>我**了（w9**xc）</td><td>失败</td></tr><tr><td>05:28:36</td><td>尝试登录</td><td>我**了（w9**xc）</td><td>失败</td></tr><tr><td>05:28:44</td><td>查看主页</td><td>不**状</td><td>—</td></tr><tr><td>05:28:52</td><td>尝试登录</td><td>不**状（dw**86）</td><td>失败</td></tr><tr><td>05:28:55</td><td>尝试登录</td><td>不**状（dw**86）</td><td>失败</td></tr><tr><td>05:29:31</td><td>查看主页</td><td>勿*</td><td>—</td></tr><tr><td>05:29:36</td><td>查看主页</td><td>古**盖</td><td>—</td></tr><tr><td>05:29:48</td><td>尝试登录</td><td>古**盖（mi**23）</td><td>失败</td></tr><tr><td>05:29:57</td><td>查看主页</td><td>我**比</td><td>—</td></tr><tr><td>05:30:01</td><td>查看主页</td><td>顶**串</td><td>—</td></tr><tr><td>05:30:07</td><td>查看主页</td><td>R**r</td><td>—</td></tr><tr><td>05:30:13</td><td>查看主页</td><td>C**a</td><td>—</td></tr><tr><td>05:30:24</td><td>尝试登录</td><td>C**a（co**ra）</td><td>失败</td></tr><tr><td>05:30:26</td><td>尝试登录</td><td>C**a（co**ra）</td><td>失败</td></tr><tr><td>05:30:31</td><td>查看主页</td><td>s**n</td><td>—</td></tr><tr><td>05:30:34</td><td>查看主页</td><td>不**辞</td><td>—</td></tr><tr><td>05:30:36</td><td>查看主页</td><td>不**状</td><td>—</td></tr><tr><td>05:30:42</td><td>查看主页</td><td>小**生</td><td>—</td></tr><tr><td>05:30:53</td><td>尝试登录</td><td>小**生（wu**ng）</td><td>失败</td></tr><tr><td>05:30:55</td><td>尝试登录</td><td>小**生（wu**ng）</td><td>失败</td></tr><tr><td>05:30:56</td><td>尝试登录</td><td>小**生（wu**ng）</td><td>失败</td></tr><tr><td>05:30:57</td><td>尝试登录</td><td>小**生（wu**ng）</td><td>失败</td></tr><tr><td>05:30:57</td><td>尝试登录</td><td>—</td><td>过快，被限流拒绝</td></tr><tr><td>05:31:03</td><td>查看主页</td><td>戀**迴</td><td>—</td></tr><tr><td>05:31:07</td><td>查看主页</td><td>小**酱</td><td>—</td></tr><tr><td>05:31:18</td><td>尝试登录</td><td>小**酱（oz**00）</td><td>失败</td></tr><tr><td>05:31:22</td><td>查看主页</td><td>肘**来</td><td>—</td></tr><tr><td>05:31:38</td><td>尝试登录</td><td>肘**来（84**79）</td><td>失败</td></tr><tr><td>05:31:41</td><td>尝试登录</td><td>肘**来（84**79）</td><td>失败</td></tr><tr><td>05:31:44</td><td>尝试登录</td><td>肘**来（84**79）</td><td>失败</td></tr><tr><td>05:31:51</td><td>查看主页</td><td>地**家</td><td>—</td></tr><tr><td>05:32:03</td><td>尝试登录</td><td>地**家（ji**20）</td><td>失败</td></tr><tr><td>05:32:14</td><td>尝试登录</td><td>地**家（ji**20）</td><td>失败</td></tr><tr><td>05:32:20</td><td>查看主页</td><td>迷*</td><td>—</td></tr><tr><td>05:32:25</td><td>查看主页</td><td>淡**过</td><td>—</td></tr><tr><td>05:32:33</td><td>查看主页</td><td>c**4</td><td>—</td></tr><tr><td>05:36:17</td><td>查看主页</td><td>没**猫</td><td>—</td></tr><tr><td>05:36:27</td><td>尝试登录</td><td>没**猫（wf**88）</td><td>失败</td></tr><tr><td>05:36:33</td><td>尝试登录</td><td>没**猫（wf**88）</td><td>失败</td></tr><tr><td>05:36:35</td><td>尝试登录</td><td>没**猫（wf**88）</td><td>失败</td></tr><tr><td>05:36:50</td><td>尝试登录</td><td>没**猫（wf**88）</td><td>失败</td></tr><tr><td>05:36:54</td><td>查看主页</td><td>冷**星</td><td>—</td></tr><tr><td>05:36:57</td><td>查看主页</td><td>s**a</td><td>—</td></tr><tr><td>05:37:00</td><td>查看主页</td><td>七**语</td><td>—</td></tr><tr><td>05:37:02</td><td>查看主页</td><td>a**e</td><td>—</td></tr><tr><td>05:37:05</td><td>查看主页</td><td>叶**白</td><td>—</td></tr></tbody></table></div></details>
+    </figure>
+
+    <figure>
+      <figcaption><div class="title">这个 IP 每天的请求数</div><div class="sub">9 月 19–23 日；包括浏览页面、图片和接口的全部请求</div></figcaption>
+      <div class="chart" id="chart-attacker"></div>
+      <details><summary>查看数据表</summary><div class="table-scroll"><table><thead><tr><th>日期</th><th>请求数</th></tr></thead><tbody><tr><td>9/19</td><td>101</td></tr><tr><td>9/20</td><td>609</td></tr><tr><td>9/21</td><td>556</td></tr><tr><td>9/22</td><td>524</td></tr><tr><td>9/23</td><td>1,330</td></tr></tbody></table></div></details>
+    </figure>
+
+    <h3>来源</h3>
+    <p>IP 为 124.79.×.×（上海 · 电信，大概率是家庭宽带），使用 Windows 电脑上的 Edge 浏览器。IP 只能定位到某条宽带，而且家庭宽带的地址会变；要对应到具体的人，需要运营商配合。完整地址管理员可以在「登录安全」页查看。</p>
+
+    <h3>为什么判断是外部人员</h3>
+    <ol class="evidence">
+      <li><strong>始终是游客。</strong>9 月 19 日到 24 日凌晨共 3,133 次请求，从没调用过任何登录后才会发出的请求（未读消息、通知、私信、草稿都是 0）。</li>
+      <li><strong>没有账号。</strong>从未注册，也从未成功登录过任何账号。</li>
+      <li><strong>只看赞助玩家。</strong>事发时点开的 26 个主页全部带「原始股 / 共建者 / 薪火」勋章；每次都是看完某人的主页几秒后，就用这个人的用户名尝试。</li>
+      <li><strong>不是账号主人。</strong>被尝试账号的主人平时在江苏、四川、广东、北京、河北、吉林登录，没有一个在上海。</li>
+      <li><strong>手动操作。</strong>每次尝试间隔几秒，和「逐个翻主页」的节奏一致，不像自动化脚本。</li>
+    </ol>
+
+    <h3>被尝试的账号</h3>
+    <p>12 个账号全部是赞助玩家：9 月 20 日 1 个，9 月 23 日 11 个。为保护玩家，昵称和用户名已打码。</p>
+    <div class="table-scroll" id="targets-table"><table class="plain"><thead><tr><th>昵称</th><th>用户名</th><th>赞助类别</th><th>尝试次数</th><th>尝试时间</th><th>平时登录地</th></tr></thead><tbody><tr><td>c**4</td><td>co**14</td><td>共建者</td><td>1</td><td>9/20 19:10:28</td><td>9/16 以来未登录过</td></tr><tr><td>A**n</td><td>aa**86</td><td>原始股（第一批赞助）</td><td>2</td><td>9/23 05:25:54–05:26:09</td><td>9/16 以来未登录过</td></tr><tr><td>哈**瓜</td><td>a1**5a</td><td>原始股（第一批赞助）</td><td>4</td><td>9/23 05:27:31–05:27:49</td><td>9/16 以来未登录过</td></tr><tr><td>我**了</td><td>w9**xc</td><td>原始股（第一批赞助）</td><td>2</td><td>9/23 05:28:32–05:28:36</td><td>四川</td></tr><tr><td>不**状</td><td>dw**86</td><td>共建者</td><td>2</td><td>9/23 05:28:52–05:28:55</td><td>北京、河北</td></tr><tr><td>古**盖</td><td>mi**23</td><td>共建者</td><td>1</td><td>9/23 05:29:48</td><td>9/16 以来未登录过</td></tr><tr><td>C**a</td><td>co**ra</td><td>共建者</td><td>2</td><td>9/23 05:30:24–05:30:26</td><td>9/16 以来未登录过</td></tr><tr><td>小**生</td><td>wu**ng</td><td>共建者</td><td>4</td><td>9/23 05:30:53–05:30:57</td><td>江苏</td></tr><tr><td>小**酱</td><td>oz**00</td><td>原始股（第一批赞助）</td><td>1</td><td>9/23 05:31:18</td><td>广东</td></tr><tr><td>肘**来</td><td>84**79</td><td>共建者</td><td>3</td><td>9/23 05:31:38–05:31:44</td><td>吉林</td></tr><tr><td>地**家</td><td>ji**20</td><td>原始股（第一批赞助）</td><td>2</td><td>9/23 05:32:03–05:32:14</td><td>广东</td></tr><tr><td>没**猫</td><td>wf**88</td><td>原始股（第一批赞助）</td><td>4</td><td>9/23 05:36:27–05:36:50</td><td>江苏</td></tr></tbody></table></div>
+
+    <h3>为什么是赞助账号</h3>
+    <p class="muted">以下是推测：注册必须有邀请码，而游戏启动器要用论坛账号登录。没有邀请码的人想进游戏，最直接的办法是借用一个现成的账号；赞助玩家的勋章在列表里很醒目，最容易被挑出来。这套推理唯一的漏洞，是他没算过另一条路的成本：发一条私聊，只要十秒钟。</p>
+
+    <h3>给这位兄弟的几句话</h3>
+    <div class="actions">
+      <div class="action done"><div class="state"><i></i>先说佩服</div>五天打卡 3,000 多次，凌晨五点起床逐个翻主页、手动试密码，全程不依赖脚本。这份毅力放进任何行业都是人才，用在猜密码上实在屈才了。</div>
+      <div class="action done"><div class="state"><i></i>坦白从宽</div>这台论坛连同游戏服，跑在阿里云免费试用一年的账号上——你花了五天想撬开的地方，本身就是个白嫖来的小破站，真没有什么可"图"的。</div>
+      <div class="action done"><div class="state"><i></i>正门开着</div>想进来？看到这一页请直接私聊管理员，说明你是来干嘛的（来玩、来围观，还是有别的想法），我们给你一个邀请码。真的，比猜密码快得多。</div>
+    </div>
+  </section>
+
+  <section class="chapter" id="method">
+    <div class="chapter-no">05 · 口径</div>
+    <h2>数据怎么来的</h2>
+    <dl class="method">
+      <dt>整页打开</dt><dd>浏览器直接打开或刷新论坛页面的次数（返回 200/304 的页面地址），不含站内点击跳转和接口请求，所以实际浏览量比这个数字高。</dd>
+      <dt>独立 IP</dt><dd>近似访客数。同一网络下的多人会合并成一个，同一个人换网络会被算成多个。</dd>
+      <dt>新面孔</dt><dd>当天第一次出现的 IP，以 9 月 9 日起保留的访问日志为准；9 月 9 日之前的日志已被轮转删除。</dd>
+      <dt>启动游戏</dt><dd>启动器授权服务的运行记录，每进入一次游戏记一次。</dd>
+      <dt>登录尝试</dt><dd>「登录安全」记录的失败登录（只记录存在的用户名），与访问日志逐条对照。另有 1 次请求被限流、1 次格式错误被拒，未计入 28 次。</dd>
+      <dt>时间与范围</dt><dd>均为北京时间；9 月 23 日按完整一天统计。前五天指 9 月 14–18 日。</dd>
+      <dt>隐私</dt><dd>IP、昵称和用户名已打码；完整信息只有管理员可以在「登录安全」页查看。</dd>
+      <dt>统计方式</dt><dd>2026 年 9 月 24 日只读查询服务器日志与数据库，没有改动任何线上数据。</dd>
+    </dl>
+  </section>
+
+  <footer>DFO 110 反馈社区 · 运营简报（公开版）· 生成于 2026-09-24 · 本页面向所有人公开，也欢迎那位兄弟围观</footer>
+</div>
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+<script id="report-data" type="application/json">{"kpis":[{"label":"论坛整页打开","value":"14,522","up":"约 7.2 倍","note":"前五天 2,009 次"},{"label":"独立 IP（五天去重）","value":"2,844","up":"约 4.5 倍","note":"前五天 632 个"},{"label":"启动游戏的玩家","value":"76","up":"+27 人","note":"前五天 49 人"},{"label":"新反馈","value":"148","up":"+44%","note":"前五天 103 条"}],"kpisIncident":[{"label":"查看的赞助玩家主页","value":"26","note":"9 月 23 日 05:25–05:37"},{"label":"被尝试的账号","value":"12","note":"全部是赞助玩家"},{"label":"登录尝试","value":"28","note":"另有 1 次被限流拒绝"},{"label":"成功登录","value":"0","note":"没有账号被盗"}],"days":[{"day":"2026-09-09","pv":230,"ips":118,"newIps":118,"players":0,"runs":0,"regs":1,"issues":34,"loginUsers":null},{"day":"2026-09-10","pv":213,"ips":99,"newIps":67,"players":0,"runs":0,"regs":0,"issues":29,"loginUsers":null},{"day":"2026-09-11","pv":187,"ips":104,"newIps":69,"players":0,"runs":0,"regs":1,"issues":24,"loginUsers":null},{"day":"2026-09-12","pv":205,"ips":104,"newIps":67,"players":0,"runs":0,"regs":0,"issues":21,"loginUsers":null},{"day":"2026-09-13","pv":177,"ips":100,"newIps":60,"players":1,"runs":2,"regs":0,"issues":16,"loginUsers":null},{"day":"2026-09-14","pv":248,"ips":119,"newIps":81,"players":1,"runs":1,"regs":0,"issues":10,"loginUsers":null},{"day":"2026-09-15","pv":190,"ips":91,"newIps":62,"players":0,"runs":0,"regs":1,"issues":6,"loginUsers":null},{"day":"2026-09-16","pv":653,"ips":207,"newIps":155,"players":20,"runs":20,"regs":50,"issues":2,"loginUsers":10},{"day":"2026-09-17","pv":447,"ips":192,"newIps":100,"players":45,"runs":197,"regs":4,"issues":63,"loginUsers":24},{"day":"2026-09-18","pv":471,"ips":225,"newIps":142,"players":28,"runs":62,"regs":2,"issues":22,"loginUsers":6},{"day":"2026-09-19","pv":1869,"ips":574,"newIps":466,"players":3,"runs":3,"regs":0,"issues":27,"loginUsers":10},{"day":"2026-09-20","pv":4130,"ips":1059,"newIps":776,"players":70,"runs":544,"regs":20,"issues":43,"loginUsers":44},{"day":"2026-09-21","pv":3027,"ips":920,"newIps":458,"players":55,"runs":350,"regs":1,"issues":40,"loginUsers":14},{"day":"2026-09-22","pv":2875,"ips":986,"newIps":530,"players":52,"runs":395,"regs":0,"issues":13,"loginUsers":8},{"day":"2026-09-23","pv":2621,"ips":894,"newIps":405,"players":53,"runs":322,"regs":0,"issues":25,"loginUsers":14}],"markers":[{"day":"2026-09-16","n":1,"text":"9 月 16 日：新一批邀请码开放注册，当天注册 50 人"},{"day":"2026-09-19","n":2,"text":"9 月 19 日：版本公布"},{"day":"2026-09-20","n":3,"text":"9 月 20 日 17:32：论坛发布 0.3.6–0.3.9 更新公告，当天游戏启动 544 次"}],"heat":{"days":["2026-09-19","2026-09-20","2026-09-21","2026-09-22","2026-09-23"],"cells":[[{"pv":86,"ips":44},{"pv":24,"ips":17},{"pv":34,"ips":13},{"pv":21,"ips":18},{"pv":72,"ips":24},{"pv":29,"ips":19},{"pv":35,"ips":23},{"pv":54,"ips":27},{"pv":49,"ips":28},{"pv":70,"ips":44},{"pv":89,"ips":32},{"pv":88,"ips":51},{"pv":91,"ips":54},{"pv":115,"ips":45},{"pv":52,"ips":35},{"pv":45,"ips":39},{"pv":109,"ips":52},{"pv":141,"ips":52},{"pv":62,"ips":36},{"pv":112,"ips":47},{"pv":96,"ips":64},{"pv":142,"ips":72},{"pv":106,"ips":64},{"pv":147,"ips":79}],[{"pv":90,"ips":58},{"pv":154,"ips":59},{"pv":32,"ips":20},{"pv":20,"ips":18},{"pv":53,"ips":17},{"pv":35,"ips":10},{"pv":29,"ips":25},{"pv":45,"ips":30},{"pv":54,"ips":38},{"pv":151,"ips":51},{"pv":83,"ips":47},{"pv":133,"ips":63},{"pv":142,"ips":71},{"pv":115,"ips":75},{"pv":103,"ips":59},{"pv":184,"ips":73},{"pv":231,"ips":88},{"pv":361,"ips":158},{"pv":459,"ips":177},{"pv":446,"ips":199},{"pv":432,"ips":192},{"pv":306,"ips":162},{"pv":259,"ips":126},{"pv":213,"ips":108}],[{"pv":153,"ips":96},{"pv":105,"ips":60},{"pv":56,"ips":39},{"pv":67,"ips":25},{"pv":25,"ips":23},{"pv":28,"ips":24},{"pv":19,"ips":15},{"pv":61,"ips":35},{"pv":104,"ips":55},{"pv":113,"ips":62},{"pv":131,"ips":64},{"pv":200,"ips":75},{"pv":178,"ips":98},{"pv":103,"ips":51},{"pv":190,"ips":101},{"pv":156,"ips":71},{"pv":125,"ips":64},{"pv":122,"ips":72},{"pv":182,"ips":85},{"pv":168,"ips":100},{"pv":175,"ips":122},{"pv":249,"ips":125},{"pv":181,"ips":115},{"pv":136,"ips":84}],[{"pv":112,"ips":56},{"pv":70,"ips":36},{"pv":49,"ips":21},{"pv":33,"ips":22},{"pv":41,"ips":28},{"pv":56,"ips":17},{"pv":42,"ips":27},{"pv":42,"ips":35},{"pv":115,"ips":47},{"pv":91,"ips":54},{"pv":118,"ips":67},{"pv":171,"ips":105},{"pv":132,"ips":89},{"pv":78,"ips":56},{"pv":111,"ips":72},{"pv":200,"ips":122},{"pv":195,"ips":123},{"pv":115,"ips":78},{"pv":137,"ips":98},{"pv":207,"ips":105},{"pv":160,"ips":111},{"pv":212,"ips":140},{"pv":202,"ips":135},{"pv":186,"ips":104}],[{"pv":142,"ips":92},{"pv":85,"ips":46},{"pv":52,"ips":28},{"pv":35,"ips":22},{"pv":18,"ips":12},{"pv":49,"ips":11},{"pv":30,"ips":23},{"pv":53,"ips":32},{"pv":80,"ips":57},{"pv":122,"ips":67},{"pv":168,"ips":89},{"pv":113,"ips":77},{"pv":74,"ips":63},{"pv":129,"ips":87},{"pv":159,"ips":82},{"pv":240,"ips":90},{"pv":115,"ips":79},{"pv":119,"ips":80},{"pv":125,"ips":80},{"pv":117,"ips":91},{"pv":189,"ips":117},{"pv":129,"ips":103},{"pv":146,"ips":90},{"pv":132,"ips":85}]],"highlights":[{"day":"2026-09-20","hour":17,"n":1},{"day":"2026-09-23","hour":5,"n":2}]},"pages":[{"path":"/","label":"反馈看板（首页）","value":7929,"share":"54.6%"},{"path":"/forum","label":"阿拉德社区","value":1807,"share":"12.4%"},{"path":"/issues/:id","label":"反馈详情","value":1530,"share":"10.5%"},{"path":"/forum/topics/:id","label":"论坛主题","value":1453,"share":"10.0%"},{"path":"/login","label":"登录","value":316,"share":"2.2%"},{"path":"/members/:id","label":"成员主页","value":247,"share":"1.7%"},{"path":"/register","label":"注册","value":194,"share":"1.3%"},{"path":"/community-notices","label":"社区通知","value":159,"share":"1.1%"},{"path":"/leaderboard","label":"贡献榜","value":158,"share":"1.1%"},{"path":"/messages","label":"私信","value":151,"share":"1.0%"}],"incident":{"start":"05:19:00","end":"05:38:00","minutes":[{"m":"05:19","browse":12,"profile":0,"login":0,"total":12},{"m":"05:20","browse":18,"profile":0,"login":0,"total":18},{"m":"05:21","browse":46,"profile":0,"login":0,"total":46},{"m":"05:22","browse":11,"profile":0,"login":0,"total":11},{"m":"05:23","browse":35,"profile":0,"login":0,"total":35},{"m":"05:24","browse":41,"profile":0,"login":0,"total":41},{"m":"05:25","browse":32,"profile":2,"login":1,"total":35},{"m":"05:26","browse":10,"profile":2,"login":2,"total":14},{"m":"05:27","browse":11,"profile":0,"login":4,"total":15},{"m":"05:28","browse":47,"profile":2,"login":4,"total":53},{"m":"05:29","browse":40,"profile":3,"login":1,"total":44},{"m":"05:30","browse":41,"profile":7,"login":6,"total":54},{"m":"05:31","browse":25,"profile":4,"login":4,"total":33},{"m":"05:32","browse":30,"profile":3,"login":2,"total":35},{"m":"05:35","browse":2,"profile":0,"login":0,"total":2},{"m":"05:36","browse":17,"profile":3,"login":4,"total":24},{"m":"05:37","browse":13,"profile":3,"login":0,"total":16},{"m":"05:40","browse":1,"profile":0,"login":0,"total":1}],"rows":[{"label":"A**n","views":[{"t":"05:25:27","label":"A**n"},{"t":"05:25:45","label":"A**n"},{"t":"05:26:11","label":"A**n"}],"attempts":["05:25:54","05:26:09"],"rateLimited":false},{"label":"哈**瓜","views":[{"t":"05:26:19","label":"哈**瓜"}],"attempts":["05:27:31","05:27:34","05:27:36","05:27:49"],"rateLimited":false},{"label":"我**了","views":[{"t":"05:28:14","label":"我**了"}],"attempts":["05:28:32","05:28:36"],"rateLimited":false},{"label":"不**状","views":[{"t":"05:28:44","label":"不**状"},{"t":"05:30:36","label":"不**状"}],"attempts":["05:28:52","05:28:55"],"rateLimited":false},{"label":"古**盖","views":[{"t":"05:29:36","label":"古**盖"}],"attempts":["05:29:48"],"rateLimited":false},{"label":"C**a","views":[{"t":"05:30:13","label":"C**a"}],"attempts":["05:30:24","05:30:26"],"rateLimited":false},{"label":"小**生","views":[{"t":"05:30:42","label":"小**生"}],"attempts":["05:30:53","05:30:55","05:30:56","05:30:57"],"rateLimited":true},{"label":"小**酱","views":[{"t":"05:31:07","label":"小**酱"}],"attempts":["05:31:18"],"rateLimited":false},{"label":"肘**来","views":[{"t":"05:31:22","label":"肘**来"}],"attempts":["05:31:38","05:31:41","05:31:44"],"rateLimited":false},{"label":"地**家","views":[{"t":"05:31:51","label":"地**家"}],"attempts":["05:32:03","05:32:14"],"rateLimited":false},{"label":"没**猫","views":[{"t":"05:36:17","label":"没**猫"}],"attempts":["05:36:27","05:36:33","05:36:35","05:36:50"],"rateLimited":false}],"others":{"label":"其他 15 位（只看未试）","short":"其他 15 位","views":[{"t":"05:29:31","label":"勿*"},{"t":"05:29:57","label":"我**比"},{"t":"05:30:01","label":"顶**串"},{"t":"05:30:07","label":"R**r"},{"t":"05:30:31","label":"s**n"},{"t":"05:30:34","label":"不**辞"},{"t":"05:31:03","label":"戀**迴"},{"t":"05:32:20","label":"迷*"},{"t":"05:32:25","label":"淡**过"},{"t":"05:32:33","label":"c**4"},{"t":"05:36:54","label":"冷**星"},{"t":"05:36:57","label":"s**a"},{"t":"05:37:00","label":"七**语"},{"t":"05:37:02","label":"a**e"},{"t":"05:37:05","label":"叶**白"}]}},"attacker":[{"day":"2026-09-19","requests":101},{"day":"2026-09-20","requests":609},{"day":"2026-09-21","requests":556},{"day":"2026-09-22","requests":524},{"day":"2026-09-23","requests":1330}]}</script>
+<script>
+(() => {
+  'use strict';
+  const D = JSON.parse(document.getElementById('report-data').textContent);
+  const NS = 'http://www.w3.org/2000/svg';
+  const fmt = n => Number(n).toLocaleString('en-US');
+  const pad = n => String(n).padStart(2, '0');
+  const md = day => { const [, m, d] = day.split('-'); return `${+m}/${+d}`; };
+  const weekday = day => '日一二三四五六'[new Date(day + 'T00:00:00Z').getUTCDay()];
+  const el = (tag, attrs, parent) => {
+    const node = document.createElementNS(NS, tag);
+    for (const k in attrs) node.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(node);
+    return node;
+  };
+  const txt = (parent, x, y, s, cls, anchor = 'start') => {
+    const t = el('text', { x, y, class: cls, 'text-anchor': anchor }, parent);
+    t.textContent = s;
+    return t;
+  };
+
+  // Theme: OS preference by default, the toggle wins both ways.
+  const root = document.documentElement, toggle = document.getElementById('theme-toggle');
+  try { const saved = localStorage.getItem('dfo110-report-theme'); if (saved) root.dataset.theme = saved; } catch { /* storage may be blocked for local files */ }
+  const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const syncToggle = () => { toggle.textContent = dark() ? '切换浅色' : '切换深色'; };
+  toggle.addEventListener('click', () => {
+    root.dataset.theme = dark() ? 'light' : 'dark';
+    try { localStorage.setItem('dfo110-report-theme', root.dataset.theme); } catch { /* ignore */ }
+    syncToggle();
+  });
+  syncToggle();
+
+  // One tooltip for every chart; content is always set with textContent.
+  const tip = document.getElementById('tip');
+  function place(e) {
+    let x, y;
+    if (e && e.type && e.type.startsWith('pointer')) { x = e.clientX; y = e.clientY; }
+    else { const r = e.target.getBoundingClientRect(); x = r.left + r.width / 2; y = r.top; }
+    const w = tip.offsetWidth, h = tip.offsetHeight;
+    let left = x + 14, top = y - h - 12;
+    if (left + w > innerWidth - 8) left = Math.max(8, x - w - 14);
+    if (top < 8) top = y + 18;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+  function show(e, title, rows) {
+    tip.replaceChildren();
+    const t = document.createElement('div');
+    t.className = 't';
+    t.textContent = title;
+    tip.appendChild(t);
+    for (const r of rows) {
+      const row = document.createElement('div');
+      row.className = 'row';
+      if (r.color) { const k = document.createElement('i'); k.className = 'key'; k.style.background = r.color; row.appendChild(k); }
+      const b = document.createElement('b');
+      b.textContent = r.value;
+      row.appendChild(b);
+      if (r.label) { const s = document.createElement('span'); s.textContent = r.label; row.appendChild(s); }
+      tip.appendChild(row);
+    }
+    tip.classList.add('on');
+    place(e);
+  }
+  const hide = () => tip.classList.remove('on');
+  function bindHit(hit, marks, svg, title, rows) {
+    hit.classList.add('hit');
+    hit.setAttribute('tabindex', '0');
+    hit.setAttribute('aria-label', title + '：' + rows.map(r => r.value + (r.label || '')).join('，'));
+    const on = e => { svg.classList.add('dim'); marks.forEach(m => m.classList.add('hover')); show(e, title, rows); };
+    const off = () => { svg.classList.remove('dim'); marks.forEach(m => m.classList.remove('hover')); hide(); };
+    hit.addEventListener('pointerenter', on);
+    hit.addEventListener('pointermove', place);
+    hit.addEventListener('pointerleave', off);
+    hit.addEventListener('focus', on);
+    hit.addEventListener('blur', off);
+  }
+
+  // Clean ticks: the smallest round top above the max, with 3–6 intervals (prefer about 4).
+  function nice(max) {
+    const mag = 10 ** Math.floor(Math.log10(Math.max(1, max) / 4));
+    let best;
+    for (const f of [1, 2, 2.5, 5, 10, 20]) {
+      const step = f * mag, n = Math.ceil(max / step);
+      if (n < 3 || n > 6) continue;
+      const top = n * step, score = [top, Math.abs(n - 4)];
+      if (!best || score[0] < best.top || (score[0] === best.top && score[1] < Math.abs(best.n - 4))) best = { top, step, n };
+    }
+    if (!best) best = { top: Math.ceil(max / mag) * mag, step: mag, n: Math.ceil(max / mag) };
+    const ticks = [];
+    for (let i = 0; i <= best.n; i++) ticks.push(Math.round(i * best.step));
+    return { top: best.top, ticks };
+  }
+  // Columns: 4px rounded data end, square at the baseline.
+  const colPath = (x, y, w, h, r) => {
+    if (h <= 0) return '';
+    r = Math.min(r, h, w / 2);
+    return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
+  };
+  const barPath = (x, y, w, h, r) => {
+    r = Math.min(r, w, h / 2);
+    return `M${x},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h - r}Q${x + w},${y + h} ${x + w - r},${y + h}H${x}Z`;
+  };
+
+  function kpis(id, items) {
+    const host = document.getElementById(id);
+    host.replaceChildren();
+    for (const k of items) {
+      const card = document.createElement('div'); card.className = 'kpi';
+      const label = document.createElement('div'); label.className = 'label'; label.textContent = k.label;
+      const value = document.createElement('div'); value.className = 'value'; value.textContent = k.value;
+      const note = document.createElement('div'); note.className = 'note';
+      if (k.up) { const s = document.createElement('strong'); s.textContent = '▲ ' + k.up; note.append(s, ' · '); }
+      note.append(k.note);
+      card.append(label, value, note);
+      host.appendChild(card);
+    }
+  }
+
+  function columns(host, o) {
+    host.replaceChildren();
+    const W = Math.max(260, Math.floor(host.clientWidth)), H = o.height || 240;
+    const m = { t: o.markers ? 50 : 28, r: 6, b: 26, l: 42 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const vals = o.items.map(o.value), { top, ticks } = nice(Math.max(...vals));
+    const svg = el('svg', { width: W, height: H, role: 'group', 'aria-label': o.aria }, host);
+    for (const t of ticks) {
+      const y = Math.round(m.t + ih - (t / top) * ih) + 0.5;
+      el('line', { x1: m.l, x2: W - m.r, y1: y, y2: y, class: t === 0 ? 'baseline' : 'gridline' }, svg);
+      txt(svg, m.l - 8, y + 4, fmt(t), 'axis-text', 'end');
+    }
+    const n = o.items.length, band = iw / n, bw = Math.max(4, Math.min(24, band - 4));
+    const every = Math.max(1, Math.ceil(34 / band));
+    o.items.forEach((d, i) => {
+      const v = vals[i], h = Math.max(0, (v / top) * ih), x = m.l + i * band + (band - bw) / 2, y = m.t + ih - h;
+      const bar = el('path', { d: colPath(x, y, bw, h, 4), fill: o.emphasis(d) ? o.color : 'var(--context)', class: 'mark' }, svg);
+      if ((n - 1 - i) % every === 0) txt(svg, x + bw / 2, H - 8, o.xLabel(d), 'axis-text', 'middle');
+      let above = y;
+      // Narrow bands cannot hold a value label without touching neighbours: keep only the peak there.
+      const fits = band >= 34 || v === Math.max(...vals);
+      if (o.label && o.label(d, i) && fits) { txt(svg, x + bw / 2, y - 6, fmt(v), 'value-text halo', 'middle'); above = y - 20; }
+      const mk = o.markers && o.markers.find(k => k.index === i);
+      if (mk) {
+        const cy = Math.max(10, above - 14);
+        el('circle', { cx: x + bw / 2, cy, r: 9, fill: 'var(--surface)', stroke: 'var(--ink-2)', 'stroke-width': 1 }, svg);
+        txt(svg, x + bw / 2, cy + 4, String(mk.n), 'badge-text', 'middle');
+      }
+      bindHit(el('rect', { x: m.l + i * band, y: 0, width: band, height: H }, svg), [bar], svg, o.tipTitle(d), o.tipRows(d));
+    });
+  }
+
+  const cuts = [25, 50, 100, 150, 200, 300];
+  const binLabels = ['1–24', '25–49', '50–99', '100–149', '150–199', '200–299', '≥300'];
+  const bin = v => (v <= 0 ? 0 : 1 + cuts.filter(c => v >= c).length);
+  function heat(host) {
+    host.replaceChildren();
+    const Hm = D.heat, W = Math.max(300, Math.floor(host.clientWidth)), narrow = W < 560;
+    const left = narrow ? 44 : 84, top = 22;
+    const cell = Math.max(9, Math.min(34, Math.floor((W - left - 4) / 24))), h = Math.min(cell - 2, 30);
+    const H = top + Hm.days.length * (h + 2) + 2;
+    const svg = el('svg', { width: left + cell * 24 + 4, height: H, role: 'group', 'aria-label': '9 月 19–23 日每小时论坛整页打开次数热力图' }, host);
+    for (let hr = 0; hr < 24; hr += cell < 16 ? 6 : 3) txt(svg, left + hr * cell + (cell - 2) / 2, 14, pad(hr), 'axis-text', 'middle');
+    Hm.days.forEach((day, r) => {
+      const y = top + r * (h + 2);
+      txt(svg, left - 10, y + h / 2 + 4, narrow ? md(day) : `${md(day)} 周${weekday(day)}`, 'label-text', 'end');
+      for (let hr = 0; hr < 24; hr++) {
+        const c = Hm.cells[r][hr], x = left + hr * cell;
+        const rect = el('rect', { x, y, width: cell - 2, height: h, rx: 3, fill: `var(--seq-${bin(c.pv)})`, class: 'mark' }, svg);
+        const hl = Hm.highlights.find(k => k.day === day && k.hour === hr);
+        if (hl) {
+          el('rect', { x: x - 1.5, y: y - 1.5, width: cell + 1, height: h + 3, rx: 4, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2 }, svg);
+          if (cell >= 16) txt(svg, x + (cell - 2) / 2, y + h / 2 + 4, String(hl.n), 'badge-text halo', 'middle');
+        }
+        bindHit(el('rect', { x, y, width: cell, height: h + 2 }, svg), [rect], svg, `${md(day)} ${pad(hr)}:00–${pad(hr + 1)}:00`,
+          [{ value: fmt(c.pv), label: ' 次整页打开' }, { value: fmt(c.ips), label: ' 个独立 IP' }]);
+      }
+    });
+    const legend = document.getElementById('legend-heat');
+    legend.replaceChildren();
+    binLabels.forEach((label, i) => {
+      const item = document.createElement('span');
+      const sw = document.createElement('span'); sw.className = 'key-rect'; sw.style.background = `var(--seq-${i + 1})`;
+      item.append(sw, label + ' 次');
+      legend.appendChild(item);
+    });
+  }
+
+  function hbars(host) {
+    host.replaceChildren();
+    const items = D.pages, W = Math.max(280, Math.floor(host.clientWidth));
+    const labelW = Math.min(170, Math.floor(W * 0.38)), rowH = 30, bh = 14, H = items.length * rowH + 4;
+    const max = Math.max(...items.map(d => d.value)), iw = W - labelW - 70;
+    const svg = el('svg', { width: W, height: H, role: 'group', 'aria-label': '被直接打开最多的页面' }, host);
+    el('line', { x1: labelW + 0.5, x2: labelW + 0.5, y1: 0, y2: H, class: 'baseline' }, svg);
+    items.forEach((d, i) => {
+      const y = i * rowH + (rowH - bh) / 2, w = Math.max(2, (d.value / max) * iw);
+      txt(svg, labelW - 10, y + bh / 2 + 4, d.label, 'label-text', 'end');
+      const bar = el('path', { d: barPath(labelW + 1, y, w, bh, 4), fill: 'var(--series-1)', class: 'mark' }, svg);
+      txt(svg, labelW + w + 8, y + bh / 2 + 4, fmt(d.value), 'value-text');
+      bindHit(el('rect', { x: 0, y: i * rowH, width: W, height: rowH }, svg), [bar], svg, `${d.label}（${d.path}）`,
+        [{ value: fmt(d.value), label: ' 次整页打开' }, { value: d.share, label: ' 占五天全部整页打开' }]);
+    });
+  }
+
+  function incident(host) {
+    host.replaceChildren();
+    const I = D.incident, W = Math.max(320, Math.floor(host.clientWidth)), narrow = W < 560;
+    const sec = s => { const [h, m, x] = s.split(':').map(Number); return h * 3600 + m * 60 + (x || 0); };
+    const hhmm = s => `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s / 60) % 60)}`;
+    const labelW = narrow ? 76 : 150, t0 = sec(I.start), t1 = sec(I.end), plotW = W - labelW - 20;
+    const X = s => labelW + ((sec(s) - t0) / (t1 - t0)) * plotW;
+    const trackTop = 6, trackH = 40, rowsTop = trackTop + trackH + 16, rowH = 28;
+    const rows = I.rows.concat([{ label: narrow ? I.others.short : I.others.label, views: I.others.views, attempts: [] }]);
+    const H = rowsTop + rows.length * rowH + 26;
+    const svg = el('svg', { width: W, height: H, role: 'group', 'aria-label': '9 月 23 日 05:19–05:38 查看主页与尝试登录的时间线' }, host);
+    const tickStep = narrow ? 240 : 120;
+    for (let s = Math.ceil(t0 / tickStep) * tickStep; s <= t1; s += tickStep) {
+      const x = labelW + ((s - t0) / (t1 - t0)) * plotW, xr = Math.round(x) + 0.5;
+      el('line', { x1: xr, x2: xr, y1: trackTop, y2: H - 22, class: 'gridline' }, svg);
+      txt(svg, x, H - 6, hhmm(s), 'axis-text', 'middle');
+    }
+    txt(svg, labelW - 10, trackTop + trackH - 4, narrow ? '请求/分' : '每分钟请求', 'label-text', 'end');
+    el('line', { x1: labelW, x2: W - 20, y1: trackTop + trackH + 0.5, y2: trackTop + trackH + 0.5, class: 'baseline' }, svg);
+    const maxReq = Math.max(...I.minutes.map(mn => mn.total)), minuteW = plotW / ((t1 - t0) / 60);
+    for (const mn of I.minutes) {
+      const s = sec(mn.m + ':00');
+      if (s < t0 || s >= t1) continue;
+      const x = labelW + ((s - t0) / (t1 - t0)) * plotW, h = (mn.total / maxReq) * trackH;
+      const bar = el('path', { d: colPath(x + 1, trackTop + trackH - h, Math.max(2, minuteW - 2), h, 2), fill: 'var(--context)', class: 'mark' }, svg);
+      bindHit(el('rect', { x, y: trackTop, width: minuteW, height: trackH }, svg), [bar], svg, `${mn.m} 这一分钟`,
+        [{ value: fmt(mn.total), label: ' 次请求' }, { value: `浏览 ${mn.browse} · 看主页 ${mn.profile} · 登录 ${mn.login}`, label: '' }]);
+    }
+    rows.forEach((row, r) => {
+      const cy = rowsTop + r * rowH + rowH / 2, yl = Math.round(cy) + 0.5;
+      el('line', { x1: labelW, x2: W - 20, y1: yl, y2: yl, class: 'gridline' }, svg);
+      txt(svg, labelW - 10, cy + 4, row.label, 'label-text', 'end');
+      for (const v of row.views) {
+        const ring = el('circle', { cx: X(v.t), cy, r: 4.5, fill: 'var(--surface)', stroke: 'var(--series-1)', 'stroke-width': 2, class: 'mark' }, svg);
+        bindHit(el('circle', { cx: X(v.t), cy, r: 12 }, svg), [ring], svg, v.t, [{ value: '查看主页', label: ' ' + v.label, color: 'var(--series-1)' }]);
+      }
+      if (row.attempts.length) {
+        const x = X(row.attempts[0]);
+        const dot = el('circle', { cx: x, cy, r: 8, fill: 'var(--series-2)', stroke: 'var(--surface)', 'stroke-width': 2, class: 'mark' }, svg);
+        const count = txt(svg, x, cy + 4, String(row.attempts.length), 'badge-text', 'middle');
+        count.setAttribute('style', 'fill:#0b0b0b');
+        if (row.rateLimited) txt(svg, x + 14, cy + 4, '另 1 次被限流', 'label-text halo');
+        bindHit(el('circle', { cx: x, cy, r: 14 }, svg), [dot], svg, `${row.label} · 尝试登录 ${row.attempts.length} 次`,
+          row.attempts.map(t => ({ value: t, label: ' 失败', color: 'var(--series-2)' })));
+      }
+    });
+  }
+
+  function render() {
+    const post = d => d.day >= '2026-09-19';
+    kpis('kpis', D.kpis);
+    kpis('kpis-incident', D.kpisIncident);
+    const days = D.days, idx = day => days.findIndex(d => d.day === day);
+    columns(document.getElementById('chart-daily'), {
+      items: days, value: d => d.pv, emphasis: post, color: 'var(--series-1)', height: 280,
+      aria: '9 月 9–23 日每天论坛整页打开次数柱状图',
+      label: d => ['2026-09-18', '2026-09-19', '2026-09-20', '2026-09-23'].includes(d.day),
+      markers: D.markers.map(k => ({ index: idx(k.day), n: k.n })),
+      xLabel: d => md(d.day), tipTitle: d => `${md(d.day)} 周${weekday(d.day)}`,
+      tipRows: d => [{ value: fmt(d.pv), label: ' 次整页打开' }, { value: fmt(d.ips), label: ' 个独立 IP' }, { value: fmt(d.players), label: ' 人启动游戏' }],
+    });
+    const notes = document.getElementById('notes-daily');
+    notes.replaceChildren();
+    for (const k of D.markers) {
+      const li = document.createElement('li');
+      const b = document.createElement('span'); b.className = 'badge-no'; b.textContent = k.n;
+      li.append(b, k.text);
+      notes.appendChild(li);
+    }
+    const recent = days.slice(1);
+    const small = (id, key, unit, aria) => {
+      const peak = Math.max(...recent.map(d => d[key]));
+      columns(document.getElementById(id), {
+        items: recent, value: d => d[key], emphasis: post, color: 'var(--series-1)', height: 190, aria,
+        label: d => d[key] === peak, xLabel: d => md(d.day), tipTitle: d => `${md(d.day)} 周${weekday(d.day)}`,
+        tipRows: d => [{ value: fmt(d[key]), label: unit }],
+      });
+    };
+    small('chart-ips', 'ips', ' 个独立 IP', '每天独立 IP 数');
+    small('chart-new', 'newIps', ' 个新 IP', '每天第一次出现的 IP 数');
+    small('chart-players', 'players', ' 人启动游戏', '每天启动游戏的玩家数');
+    heat(document.getElementById('chart-heat'));
+    hbars(document.getElementById('chart-pages'));
+    incident(document.getElementById('chart-incident'));
+    const maxReq = Math.max(...D.attacker.map(d => d.requests));
+    columns(document.getElementById('chart-attacker'), {
+      items: D.attacker, value: d => d.requests, emphasis: () => true, color: 'var(--series-2)', height: 200,
+      aria: '该 IP 9 月 19–23 日每天请求数', label: (d, i) => i === 0 || d.requests === maxReq,
+      xLabel: d => md(d.day), tipTitle: d => `${md(d.day)} 周${weekday(d.day)}`, tipRows: d => [{ value: fmt(d.requests), label: ' 次请求' }],
+    });
+  }
+  render();
+  let width = innerWidth, timer;
+  addEventListener('resize', () => {
+    if (innerWidth === width) return;
+    width = innerWidth;
+    clearTimeout(timer);
+    timer = setTimeout(() => { hide(); render(); }, 150);
+  });
+})();
+
+</script>
+</body>
+</html>
